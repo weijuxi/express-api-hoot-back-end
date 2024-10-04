@@ -7,6 +7,9 @@ const mongoose = require('mongoose');
 const testJWTRouter = require('./controllers/test-jwt');
 const usersRouter = require('./controllers/users');
 const profilesRouter = require('./controllers/profiles');
+const hootRouter = require('./controllers/hoots')
+
+const verifyToken = require('./middleware/verify-token')
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -20,6 +23,12 @@ app.use(express.json());
 app.use('/test-jwt', testJWTRouter);
 app.use('/users', usersRouter);
 app.use('/profiles', profilesRouter);
+
+// this will make req.user available in every hoot controller function
+// this decodes the jwt!
+app.use(verifyToken)
+app.use('/hoots', hootRouter)
+
 
 app.listen(3000, () => {
     console.log('The express app is ready!');

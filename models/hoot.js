@@ -26,7 +26,7 @@ const hootSchema = mongoose.Schema({
 	category: {
 		type: String,
 		required: true,
-		enums: ["New", "Sports", "Games", "Movies", "Music", "Television"] 
+		enums: ["News", "Sports", "Games", "Movies", "Music", "Television"] 
 	}, 
 	// 1 to many relationship between user and hoots
 	// 1 user has many hoots, hoot belongs to a user
