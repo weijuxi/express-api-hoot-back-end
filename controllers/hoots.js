@@ -35,7 +35,7 @@ router.get("/", async function (req, res) {
 
 router.get("/:id", async function (req, res) {
   try {
-    const hootDoc = await HootModel.findById(req.params.id).populate("author",'comments.author');
+    const hootDoc = await HootModel.findById(req.params.id).populate(['author','comments.author']);
 
     res.status(200).json(hootDoc);
   } catch (err) {
